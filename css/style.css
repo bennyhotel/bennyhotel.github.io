@@ -1684,6 +1684,10 @@ span.glyphicon.glyphicon-user, span.glyphicon.glyphicon-camera, span.glyphicon.g
 }
 }
 
+.preview-img {
+  height: 260px;
+}
+
 .carousel,
 .item,
 .active {
@@ -1692,6 +1696,10 @@ span.glyphicon.glyphicon-user, span.glyphicon.glyphicon-camera, span.glyphicon.g
 
 .carousel-inner {
     height: 100%;
+}
+
+.preview-img-rooms {
+    height: 280px;
 }
 
 /* Background images are set within the HTML using inline CSS, not here */
