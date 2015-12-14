@@ -1490,8 +1490,8 @@ span.glyphicon.glyphicon-user, span.glyphicon.glyphicon-camera, span.glyphicon.g
 }
 @media (max-width:480px){
 .header {
-    background: url(../images/bennyfront.png) no-repeat -130px 0px;
-    background-size: cover;
+    background: url(../images/standard.jpg) no-repeat -130px 0px;
+    /*background-size: cover;*/
 }
 .navbar-brand h1 a {
     font-size: 1.1em;
@@ -1705,6 +1705,10 @@ span.glyphicon.glyphicon-user, span.glyphicon.glyphicon-camera, span.glyphicon.g
 .room-description {
     margin: 40px 0 0 20px;
 
+}
+
+#book_form {
+  margin-top: 10%;
 }
 
 .fill {

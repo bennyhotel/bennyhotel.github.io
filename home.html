@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="most-popular">
 		<div class="container">	
 			<div class="popular-grids">
-				<div class="col-md-4 popular-grid">
+				<div class="col-md-3 popular-grid">
 				<h3>popular info</h3>
 				<ul>
 					<li><a href="#">RESTAURANTS & BARS</a></li>
@@ -106,28 +106,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="#">CAR RENTALS</a></li>
 				</ul>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<h2>Make a reservation</h2>
-				    <div class='col-md-4'>
-				        <div class="form-group">
-				            <div class='input-group date' id='datetimepicker6'>
-				                <input type='text' class="form-control" />
-				                <span class="input-group-addon">
-				                    <span class="glyphicon glyphicon-calendar"></span>
-				                </span>
-				            </div>
-				        </div>
-				    </div>
-				    <div class='col-md-4'>
-				        <div class="form-group">
-				            <div class='input-group date' id='datetimepicker7'>
-				                <input type='text' class="form-control" />
-				                <span class="input-group-addon">
-				                    <span class="glyphicon glyphicon-calendar"></span>
-				                </span>
-				            </div>
-				        </div>
-				    </div>
+					<form id="book_form" action="reservemail.php" method="post">
+					<div style="display:inline-block">
+								<h5>name</h5>
+								<input type="text" name="name">
+								<h5>email address</h5>
+								<input type="text" name="email_address">
+								<h5>phone number</h5>
+								<input type="text" name="phone_number">
+								<h5>Chose a room:</h5>
+								<select name="room_type">
+								  <option value="Standard room">Standard room</option>
+								  <option value="Executive room">Executive room</option>
+								  <option value="Royal room">Royal room</option>
+								  <option value="Presidential Suite">Presidential Suite</option>
+								  <option value="Executive/Royal Suites">Executive/Royal Suites</option>
+								  <option value="Executive Luxury">Executive Luxury</option>
+								</select>
+					</div>			
+					    <div class='col-md-4' style="display:inline-block">
+					        <div class="form-group">
+					            <div class='input-group date' id='datetimepicker6'>
+					            <h5>Check in:</h5>
+					                <input type='text' class="form-control" name="check_in_date" />
+					                <span class="input-group-addon">
+					                    <span class="glyphicon glyphicon-calendar"></span>
+					                </span>            
+					            </div>
+					        </div>
+					    </div>
+					    <div class='col-md-4' style="display:inline-block">
+					        <div class="form-group">
+					            <div class='input-group date' id='datetimepicker7'>
+					            <h5>Check out:</h5>
+					                <input type='text' class="form-control" name="check_out_date" />
+					                <span class="input-group-addon">
+					                    <span class="glyphicon glyphicon-calendar"></span>
+					                </span>   
+					            </div>
+					        </div>
+					    </div>
+					    <input type="submit" name="submit" value="book"> 
+				    </form>
 				</div>
 				<div class="clearfix"></div>
 			</div>

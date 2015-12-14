@@ -10,11 +10,14 @@ set_error_handler("var_dump");
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $email_address = $_POST['email_address'];
-    $mes = $_POST['message'];
+    $phone_number = $_POST['phone_number'];
+    $room_type = $_POST['room_type'];
+    $check_in_date = $_POST['check_in_date'];
+    $check_out_date = $_POST['check_out_date'];
     $message = array(
     'subject' => 'Contact form message',
     'from_email' => 'no-reply@bennyhotel.com',
-    'html' => $name . " email: " . $email_address . " wrote the following:" . "\n\n" . $mes ,
+    'html' => "Name: " . $name . " email: " . $email_address . " Phone number: " . $phone_number. " is checking in on: " . $check_in_date . " and checking out on: " . $check_out_date . " room type: " .    $room_type ,
     'to' => array(array('email' => 'chineduabalogu@gmail.com', 'name' => 'Benny Hotel front desk')),
     'merge_vars' => array(array(
         'rcpt' => 'recipient1@domain.com',
