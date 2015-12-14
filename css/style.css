@@ -1702,7 +1702,10 @@ span.glyphicon.glyphicon-user, span.glyphicon.glyphicon-camera, span.glyphicon.g
     height: 280px;
 }
 
-/* Background images are set within the HTML using inline CSS, not here */
+.room-description {
+    margin: 40px 0 0 20px;
+
+}
 
 .fill {
     width: 100%;
