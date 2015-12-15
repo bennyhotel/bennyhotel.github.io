@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     'subject' => 'Contact form message',
     'from_email' => 'no-reply@bennyhotel.com',
     'html' => $name . " email: " . $email_address . " wrote the following:" . "\n\n" . $mes ,
-    'to' => array(array('email' => 'chineduabalogu@gmail.com', 'name' => 'Benny Hotel front desk')),
+    'to' => array(array('email' => 'info@bennyhotellagos.com', 'name' => 'Benny Hotel front desk')),
     'merge_vars' => array(array(
         'rcpt' => 'recipient1@domain.com',
         'vars' =>

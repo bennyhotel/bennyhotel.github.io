@@ -12,13 +12,14 @@ if(isset($_POST['submit'])){
     $email_address = $_POST['email_address'];
     $phone_number = $_POST['phone_number'];
     $room_type = $_POST['room_type'];
+    $no_of_lodgers = $_POST['no_of_lodgers'];
     $check_in_date = $_POST['check_in_date'];
     $check_out_date = $_POST['check_out_date'];
     $message = array(
     'subject' => 'Contact form message',
     'from_email' => 'no-reply@bennyhotel.com',
-    'html' => "Name: " . $name . " email: " . $email_address . " Phone number: " . $phone_number. " is checking in on: " . $check_in_date . " and checking out on: " . $check_out_date . " room type: " .    $room_type ,
-    'to' => array(array('email' => 'chineduabalogu@gmail.com', 'name' => 'Benny Hotel front desk')),
+    'html' => "Name: " . $name . " email: " . $email_address . " Phone number: " . $phone_number. " is checking in on: " . $check_in_date . " and checking out on: " . $check_out_date . " room type: " .    $room_type . " number of peope: " . $no_of_lodgers,
+    'to' => array(array('email' => 'info@bennyhotellagos.com', 'name' => 'Benny Hotel front desk')),
     'merge_vars' => array(array(
         'rcpt' => 'recipient1@domain.com',
         'vars' =>
