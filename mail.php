@@ -28,21 +28,8 @@ if(isset($_POST['submit'])){
                 'content' => 'Last name')
         ))));
 
-    // $template_content = array(
-    //     array(
-    //         'name' => 'main',
-    //         'content' => $first_name ."". $last_name . "\n\n" . $mes  ),
-    //     array(
-    //         'name' => 'footer',
-    //         'content' => 'Copyright 2012.')
-
-    // );
-
     print_r($mandrill->messages->send($message, $async=false, $ip_pool=null, $send_at=null));
 
-
-    // echo "Mail Sent. Thank you " . $name . ", we will contact you shortly.";
-    // You can also use header('Location: thank_you.php'); to redirect to another page.
     }
 ?>
 
