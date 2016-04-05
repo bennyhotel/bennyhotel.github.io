@@ -18,7 +18,9 @@ if(isset($_POST['submit'])){
     $message = array(
     'subject' => 'Contact form message',
     'from_email' => 'no-reply@bennyhotel.com',
-    'html' => "Name: " . $name . " email: " . $email_address . " Phone number: " . $phone_number. " is checking in on: " . $check_in_date . " and checking out on: " . $check_out_date . " room type: " .    $room_type . " number of peope: " . $no_of_lodgers,
+    'html' => "Name: " . $name . " \n email: " . $email_address . " \n Phone number: " . $phone_number. 
+              "\n is checking in on: " . $check_in_date . "\n and checking out on: " . $check_out_date . 
+              "\n room type: " .    $room_type . "\n number of people: " . $no_of_lodgers,
     'to' => array(array('email' => 'info@bennyhotellagos.com', 'name' => 'Benny Hotel front desk')),
     'merge_vars' => array(array(
         'rcpt' => 'recipient1@domain.com',
@@ -32,8 +34,8 @@ if(isset($_POST['submit'])){
                 'content' => 'Last name')
         ))));
 
+    
+    $mandrill->messages->send($message, $async=false, $ip_pool=null, $send_at=null);
     header("Location: /thankyou.html")
-
     }
 ?>
-
