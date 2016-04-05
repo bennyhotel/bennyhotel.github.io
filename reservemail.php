@@ -36,6 +36,7 @@ if(isset($_POST['submit'])){
 
     
     $mandrill->messages->send($message, $async=false, $ip_pool=null, $send_at=null);
-    // header("Location: /thankyou.html")
     }
+    header("Location: /thankyou.html")
+
 ?>

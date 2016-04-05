@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
         ))));
 
     $mandrill->messages->send($message, $async=false, $ip_pool=null, $send_at=null);
-    // header("Location: /thankyou2.html")
     }
+    header("Location: /thankyou2.html")
 ?>
 
