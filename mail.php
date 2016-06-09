@@ -29,8 +29,7 @@ if(isset($_POST['submit'])){
 
     $sendgrid->send($message, $async=false, $ip_pool=null, $send_at=null);
     }
-    header("Location: /thankyou2.html") -->
-
+    header("Location: /thankyou2.html");
 ?>
 <!-- 
 // use actual sendgrid username and password in this section
