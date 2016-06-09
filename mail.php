@@ -1,4 +1,5 @@
-<!-- require 'sendgrid-php/vendor/autoload.php'; //Not required with Composer
+<?php
+require 'sendgrid-php/vendor/autoload.php'; //Not required with Composer
 $sendgrid = new SendGrid("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");
 
 error_reporting(-1);
@@ -26,11 +27,12 @@ if(isset($_POST['submit'])){
                 'content' => 'Last name')
         ))));
 
-    $sendgrid->messages->send($message, $async=false, $ip_pool=null, $send_at=null);
+    $sendgrid->send($message, $async=false, $ip_pool=null, $send_at=null);
     }
     header("Location: /thankyou2.html") -->
 
-<?php
+?>
+<!-- 
 // use actual sendgrid username and password in this section
 $url = 'https://api.sendgrid.com/'; 
 $user = 'mrabalogu'; // place SG username here
@@ -75,4 +77,4 @@ header('Location: /thankyou2.html'); // feel free to use whatever title you wish
 exit();
 // print everything out
 // print_r($response);
-?>
+ -->
