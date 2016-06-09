@@ -2,15 +2,29 @@
 require 'sendgrid-php/vendor/autoload.php'; //Not required with Composer
 $sendgrid = new SendGrid("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");
 
+$email = new SendGrid\Email();
+
 error_reporting(-1);
 ini_set('display_errors', 'On');
 set_error_handler("var_dump");
 
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
-    $email_address = $_POST['email_address'];
-    $mes = $_POST['message'];
-    $message = array(
+    $email = $_POST['email_address'];
+    $message = $_POST['message'];
+    $email->addTo('info@bennyhotellagos.com')
+    ->setFrom('no-reply@bennyhotel.com')
+    ->setSubject('Contact form')
+    ->setText('Hello!')
+    ->setHtml('<html><head><title> Contact Form</title><body>
+                Name: $name\n<br>
+                Email: $email\n<br>
+                Message: $message <body></title></head></html>');
+
+    $sendgrid->send($email);    
+    header("Location: /thankyou2.html");
+?>
+<!-- $message = array(
     'subject' => 'Contact form message',
     'from_email' => 'no-reply@bennyhotel.com',
     'html' => $name . "\n email: " . $email_address . "\n wrote the following:" . "\n\n" . $mes ,
@@ -28,9 +42,7 @@ if(isset($_POST['submit'])){
         ))));
 
     $sendgrid->send($message, $async=false, $ip_pool=null, $send_at=null);
-    }
-    header("Location: /thankyou2.html");
-?>
+    } -->
 <!-- 
 // use actual sendgrid username and password in this section
 $url = 'https://api.sendgrid.com/'; 
