@@ -1,7 +1,7 @@
 <?php 
 
-require_once 'mandrill-api-php/src/Mandrill.php'; //Not required with Composer
-$mandrill = new Mandrill('4gL731motIUIaR5XtcaYIw');
+require 'sendgrid-php/vendor/autoload.php'; //Not required with Composer
+$sendgrid = new SendGrid("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");
 
 error_reporting(-1);
 ini_set('display_errors', 'On');
@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
                 'content' => 'Last name')
         ))));
 
-    $mandrill->messages->send($message, $async=false, $ip_pool=null, $send_at=null);
+    $sendgrid->messages->send($message, $async=false, $ip_pool=null, $send_at=null);
     }
     header("Location: /thankyou2.html")
 ?>
