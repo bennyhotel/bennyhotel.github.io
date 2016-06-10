@@ -1,5 +1,5 @@
 <?php
-require './vendor/autoload.php';
+require('class.phpmailer.php');
 $mail = new PHPMailer();
 
 $name = $_POST['name'];
@@ -10,10 +10,10 @@ $mail->IsSMTP();
 $mail->SMTPAuth = true; // enable SMTP authentication
 $mail->SMTPSecure = "ssl"; 
 $mail->SMTPDebug = 2;
-$mail->Host = "plus.smtp.mail.yahoo.com";
+$mail->Host = "smtp.gmail.com";
 $mail->Port = 465; // set the SMTP port
-$mail->Username = "chineduabalog@yahoo.com";
-$mail->Password = "pmsschool"; 
+$mail->Username = "chineduabalog@gmail.com";
+$mail->Password = "1pmsschool"; 
 $mail->From = $email;
 $mail->FromName = $name;
 $mail->AddAddress("info@bennyhotellagos.com");
@@ -49,26 +49,3 @@ else
     header("Location: /thankyou2.html");
 }
 ?>
-<!-- if(isset($_POST['submit'])){
-    $mail->From = "sumthing@yahoo.com";
-    $mail->FromName = "myname";
-    $mail->AddAddress("you@example.com");
-    $mail->Subject = "Test PHPMailer Message";
-    $mail->Body = "Hi! \n\n This was sent with phpMailer_example3.php.";
-
-    
-
-    $name = $_POST['name'];
-    $email = $_POST['email_address'];
-    $message = $_POST['message'];
-    $email->addTo('info@bennyhotellagos.com')
-    ->setFrom('no-reply@bennyhotel.com')
-    ->setSubject('Contact form')
-    ->setText('Hello!')
-    ->setHtml('<html><head><title> Contact Form</title><body>
-                Name: $name\n<br>
-                Email: $email\n<br>
-                Message: $message <body></title></head></html>');
-
-    $sendgrid->send($email);    
-    header("Location: /thankyou2.html"); -->
