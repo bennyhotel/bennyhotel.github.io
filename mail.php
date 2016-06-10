@@ -1,22 +1,17 @@
 <?php
 require 'vendor/autoload.php';
+use Mailgun\Mailgun;
 
-use SparkPost\SparkPost;
-use GuzzleHttp\Client;
-use Ivory\HttpAdapter\Guzzle6HttpAdapter;
+# Instantiate the client.
+$mgClient = new Mailgun('key-e87bf6f1a276e57672a6cacabf72c97a');
+$domain = "sandbox173725272456427b80374db0775c1d92.mailgun.org";
 
-$httpAdapter = new Guzzle6HttpAdapter(new Client());
-$sparky = new SparkPost($httpAdapter, ['key'=>getEnv('SPARKPOST_API_KEY')]);
-
-$results = $sparky->transmission->send([
-    'from'=> 'name' . getEnv('SPARKPOST_SANDBOX_DOMAIN'),
-    'html'=>'<html><body>
-       mmkmdkmmdkmdkmdkdkmd 
-        </body></html>',
-    'subject'=> 'Oh hey!',
-    'recipients'=>[
-      ['address'=>['email'=>'info@bennyhotellagos.com']]
-    ]
-]);
+# Make the call to the client.
+$result = $mgClient->sendMessage($domain, array(
+    'from'    => 'Excited User <mailgun@YOUR_DOMAIN_NAME>',
+    'to'      => 'Baz <info@bennyhotellagos.com>',
+    'subject' => 'Hello',
+    'text'    => 'Testing some Mailgun awesomness!'
+));
 
 ?>

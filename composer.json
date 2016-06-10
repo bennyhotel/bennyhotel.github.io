@@ -1,7 +1,5 @@
 {
     "require": {
-        "phpmailer/phpmailer": "^5.2",
-        "sparkpost/php-sparkpost": "^1.2",
-        "guzzlehttp/guzzle": "^6.2"
+        "mailgun/mailgun-php": "~2.0"
     }
 }
