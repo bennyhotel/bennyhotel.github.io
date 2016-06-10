@@ -1,5 +1,5 @@
 <?php
-require("PHPMailer/PHPMailerAutoload.php");
+require './vendor/autoload.php';
 $mail = new PHPMailer();
 
 $name = $_POST['name'];
@@ -9,6 +9,7 @@ $message = $_POST['message'];
 $mail->IsSMTP();
 $mail->SMTPAuth = true; // enable SMTP authentication
 $mail->SMTPSecure = "ssl"; 
+$mail->SMTPDebug = 2;
 $mail->Host = "plus.smtp.mail.yahoo.com";
 $mail->Port = 465; // set the SMTP port
 $mail->Username = "chineduabalog@yahoo.com";

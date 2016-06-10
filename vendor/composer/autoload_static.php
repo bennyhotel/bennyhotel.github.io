@@ -6,16 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitc038673a4774dd23246cc31dfd721957
 {
-    public static $prefixesPsr0 = array (
-        'M' => 
-        array (
-            'Monolog' => 
-            array (
-                0 => __DIR__ . '/..' . '/monolog/monolog/src',
-            ),
-        ),
-    );
-
     public static $classMap = array (
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
@@ -30,7 +20,6 @@ class ComposerStaticInitc038673a4774dd23246cc31dfd721957
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInitc038673a4774dd23246cc31dfd721957::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitc038673a4774dd23246cc31dfd721957::$classMap;
 
         }, null, ClassLoader::class);
