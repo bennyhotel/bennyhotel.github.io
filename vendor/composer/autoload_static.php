@@ -6,6 +6,54 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitc038673a4774dd23246cc31dfd721957
 {
+    public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zend\\Diactoros\\' => 15,
+        ),
+        'S' => 
+        array (
+            'SparkPost\\Test\\TestUtils\\' => 25,
+            'SparkPost\\SendGridCompatibility\\' => 32,
+            'SparkPost\\' => 10,
+        ),
+        'P' => 
+        array (
+            'Psr\\Http\\Message\\' => 17,
+        ),
+        'I' => 
+        array (
+            'Ivory\\HttpAdapter\\' => 18,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Zend\\Diactoros\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
+        ),
+        'SparkPost\\Test\\TestUtils\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sparkpost/php-sparkpost/test/unit/TestUtils',
+        ),
+        'SparkPost\\SendGridCompatibility\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sparkpost/php-sparkpost/lib/SendGridCompatibility',
+        ),
+        'SparkPost\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sparkpost/php-sparkpost/lib/SparkPost',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Ivory\\HttpAdapter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egeloen/http-adapter/src',
+        ),
+    );
+
     public static $classMap = array (
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
@@ -20,6 +68,8 @@ class ComposerStaticInitc038673a4774dd23246cc31dfd721957
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc038673a4774dd23246cc31dfd721957::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc038673a4774dd23246cc31dfd721957::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitc038673a4774dd23246cc31dfd721957::$classMap;
 
         }, null, ClassLoader::class);

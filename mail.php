@@ -1,51 +1,29 @@
 <?php
-require('class.phpmailer.php');
-$mail = new PHPMailer();
+require 'vendor/autoload.php';
+
+use SparkPost\SparkPost;
+use GuzzleHttp\Client;
+use Ivory\HttpAdapter\Guzzle6HttpAdapter;
+
+$httpAdapter = new Guzzle6HttpAdapter(new Client());
+$sparky = new SparkPost($httpAdapter, ['key'=>getEnv('SPARKPOST_API_KEY')]);
 
 $name = $_POST['name'];
 $email = $_POST['email'];
 $message = $_POST['message'];
 
-$mail->IsSMTP();
-$mail->SMTPAuth = true; // enable SMTP authentication
-$mail->SMTPSecure = "ssl"; 
-$mail->SMTPDebug = 2;
-$mail->Host = "smtp.gmail.com";
-$mail->Port = 465; // set the SMTP port
-$mail->Username = "chineduabalog@gmail.com";
-$mail->Password = "1pmsschool"; 
-$mail->From = $email;
-$mail->FromName = $name;
-$mail->AddAddress("info@bennyhotellagos.com");
+$results = $sparky->transmission->send([
+    'from'=> $name . getEnv('SPARKPOST_SANDBOX_DOMAIN'),
+    'html'=>'<html><body>
+        <p>Name: $name</p>
+        <p>email: $email</p>
+        <h6>message: $message</h6>
+        </body></html>',
+    'subject'=> 'Oh hey!',
+    'recipients'=>[
+      ['address'=>['email'=>'info@bennyhotellagos.com']]
+    ]
+]);
 
-$mail->isHTML(true);
-
-$mail->Subject = "Contact form";
-$mail->Body = $message;
-
-// SEND TO YOURSELF
-
-$mail->addReplyTo( $email, $name );
-$mail->addAddress( 'info@bennyhotellagos.com', 'Benny Hotel' );
-$mail->send();
-
-// CLEAR REPLY TO AND RECIPIENTS 
-
-$mail->clearReplyTos();
-$mail->clearAllRecipients();
-
-// SEND TO THE USER
-
-$mail->addAddress( $email, $first_name );
-$mail->addReplyTo( 'your@email.com', 'You' );
-
-if(!$mail->Send())
-{
-    echo 'Message was not sent.';
-    echo 'Mailer error: ' . $mail->ErrorInfo;
-}
-else
-{
-    header("Location: /thankyou2.html");
-}
+header("Location: /thankyou2.html");
 ?>
