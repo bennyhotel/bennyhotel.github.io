@@ -1,29 +1,19 @@
 <?php
 require 'vendor/autoload.php';
 
-use SparkPost\SparkPost;
-use GuzzleHttp\Client;
-use Ivory\HttpAdapter\Guzzle6HttpAdapter;
+SparkPost::setConfig(["key"=>getEnv("SPARKPOST_API_KEY")]);
+try {
+    // Build your email and send it!
+    Transmission::send(array('campaign'=>'first-mailing',
+            'from'=>'test@' . getEnv("SPARKPOST_SANDBOX_DOMAIN"), // 'test@sparkpostbox.com'
+            'subject'=>'Hello from php-sparkpost',
+            'html'=>'<html><body><h1>Congratulations, {{name}}!</h1><p>You just sent your very first mailing!</p></body></html>',
+            'text'=>'Congratulations, {{name}}!! You just sent your very first mailing!',
+            'substitutionData'=>array('name'=>'YOUR FIRST NAME'),
+            'recipients'=>array(array('address'=>array('name'=>'YOUR FULL NAME', 'email'=>'info@bennyhotellagos.com' )))
+    ));
 
-$httpAdapter = new Guzzle6HttpAdapter(new Client());
-$sparky = new SparkPost($httpAdapter, ['key'=>getEnv('SPARKPOST_API_KEY')]);
-
-$name = $_POST['name'];
-$email = $_POST['email'];
-$message = $_POST['message'];
-
-$results = $sparky->transmission->send([
-    'from'=> $name . getEnv('SPARKPOST_SANDBOX_DOMAIN'),
-    'html'=>'<html><body>
-        <p>Name: $name</p>
-        <p>email: $email</p>
-        <h6>message: $message</h6>
-        </body></html>',
-    'subject'=> 'Oh hey!',
-    'recipients'=>[
-      ['address'=>['email'=>'info@bennyhotellagos.com']]
-    ]
-]);
-
-header("Location: /thankyou2.html");
-?>
+    header("Location: /thankyou2.html");
+} catch (Exception $err) {
+    echo 'Whoops! Something went wrong';     var_dump($err);
+} ?>
