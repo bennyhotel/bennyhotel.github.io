@@ -1,11 +1,8 @@
 <?php 
 
-require_once 'mandrill-api-php/src/Mandrill.php'; //Not required with Composer
-$mandrill = new Mandrill('4gL731motIUIaR5XtcaYIw');
+require 'vendor/autoload.php';
 
-error_reporting(-1);
-ini_set('display_errors', 'On');
-set_error_handler("var_dump");
+$mail = new PHPMailer;
 
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
@@ -15,28 +12,31 @@ if(isset($_POST['submit'])){
     $no_of_lodgers = $_POST['no_of_lodgers'];
     $check_in_date = $_POST['check_in_date'];
     $check_out_date = $_POST['check_out_date'];
-    $message = array(
-    'subject' => 'Contact form message',
-    'from_email' => 'no-reply@bennyhotel.com',
-    'html' => "Name: " . $name . " \n email: " . $email_address . " \n Phone number: " . $phone_number. 
-              "\n is checking in on: " . $check_in_date . "\n and checking out on: " . $check_out_date . 
-              "\n room type: " .    $room_type . "\n number of people: " . $no_of_lodgers,
-    'to' => array(array('email' => 'info@bennyhotellagos.com', 'name' => 'Benny Hotel front desk')),
-    'merge_vars' => array(array(
-        'rcpt' => 'recipient1@domain.com',
-        'vars' =>
-        array(
-            array(
-                'name' => 'FIRSTNAME',
-                'content' => 'Recipient 1 first name'),
-            array(
-                'name' => 'LASTNAME',
-                'content' => 'Last name')
-        ))));
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.mailgun.org';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'postmaster@sandbox173725272456427b80374db0775c1d92.mailgun.org';                 // SMTP username
+    $mail->Password = '0280a862b6e94a03ff04d30b66adbee0';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;                                    // TCP port to connect to
 
-    
-    $mandrill->messages->send($message, $async=false, $ip_pool=null, $send_at=null);
+    $mail->setFrom( $email_address , $name );
+    $mail->addAddress('info@bennyhotellagos.com', 'Chinedu Abalogu');     // Add a recipient
+    $mail->isHTML(true);                                  // Set email format to HTML
+
+    $mail->Subject = 'Someone has made a reservation';
+    $mail->Body    = '<b>name:' . $name . '</b>
+                      <p><b>phone number:' . $phone_number . '</b><p>
+                      <p><b>name:' . $room_type . '</b></p>
+                      <p><b>name:' . $no_of_lodgers . '</b></p>
+                      <p><b>name:' . $check_in_date . '</b></p>
+                      <p><b>name:' . $check_out_date . '</b></p>';
+
+    if(!$mail->send()) {
+        header("Location: /error.html");
+    } else {
+        header("Location: /thankyou.html");
     }
-    header("Location: /thankyou.html");
+}
 
 ?>
